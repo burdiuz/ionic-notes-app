@@ -2,6 +2,12 @@
 Thumbs.db
 ehthumbs.db
 
+.idea/
+www/lib/
+node_modules/
+platforms/
+plugins/ 
+
 # Folder config file
 Desktop.ini
 
