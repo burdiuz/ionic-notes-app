@@ -6,7 +6,7 @@ ehthumbs.db
 www/lib/
 node_modules/
 platforms/
-plugins/ 
+plugins/
 
 # Folder config file
 Desktop.ini
