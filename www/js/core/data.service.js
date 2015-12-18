@@ -42,6 +42,14 @@
       return _list.slice();
     };
 
+    this.getItem = function(id) {
+      return _ids[id];
+    };
+
+    this.hasItem = function(id) {
+      return _ids.hasOwnProperty(id);
+    };
+
     /**
      * @returns Note
      */
@@ -53,7 +61,7 @@
      * @param item Note
      */
     this.saveItem = function(item) {
-      if (_ids.hasOwnProperty(item.id)) {
+      if (this.hasItem(item.id)) {
         var index = _list.indexOf(item);
         if (index >= 0) {
           item.modifiedDate = new Date();
@@ -91,14 +99,15 @@
     };
 
     function read() {
-      _list = $window.localStorage.getItem('notes') || [];
+      var data = $window.localStorage.getItem('notes');
+      _list = data ? angular.fromJson(data) : [];
       _list.forEach(function(item) {
         _ids[item.id] = item;
       });
     }
 
     function write() {
-      $window.localStorage.setItem('notes', _list);
+      $window.localStorage.setItem('notes', angular.toJson(_list));
       _change.notify();
     }
 

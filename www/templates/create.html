@@ -1,21 +1,25 @@
-<ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Create Note</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="close()">Close</button>
-    </div>
-  </ion-header-bar>
-  <ion-content>
-    <form ng-submit="save(item)">
+<ion-view view-title="Create Note">
+  <form name="createForm" novalidate>
+    <ion-content scroll="false">
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Title</span>
-          <input type="text" ng-model="item.title" placeholder="Created on {{item.createdDate}}">
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Create</button>
+          <input name="title" type="text" placeholder="Title" data-ng-model="vm.item.title">
         </label>
       </div>
-    </form>
-  </ion-content>
-</ion-modal-view>
+    </ion-content>
+    <div class="row">
+    <textarea name="text" placeholder="Enter Note text here..." class="col col-100" data-ng-model="vm.item.text"
+              style="position:absolute; top: 100px; bottom: 80px; left: 0; right: 0; margin: auto;"></textarea>
+    </div>
+    <div class="row">
+      <button class="col col-50 button button-block button-positive" type="submit"
+              style="position: absolute; bottom: 0; right: 0;" ng-click="vm.saveAndNew()"
+              data-ng-disabled="createForm.text.$pristine || vm.invalid()">Save and add New
+      </button>
+      <button class="col col-50 button button-block button-positive" type="submit"
+              style="position: absolute; bottom: 0; left: 0;" ng-click="vm.save()"
+              data-ng-disabled="createForm.text.$pristine || vm.invalid()">Save
+      </button>
+    </div>
+  </form>
+</ion-view>

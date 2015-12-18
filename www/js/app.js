@@ -32,23 +32,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.core'])
         controller: 'MenuController',
         controllerAs: 'vm'
       })
-      .state('app.welcome', {
-        url: '/welcome',
+      .state('app.create', {
+        url: '/create',
         views: {
           'menuContent': {
-            templateUrl: 'templates/welcome.html'
+            templateUrl: 'templates/create.html',
+            controller: 'CreateController',
+            controllerAs: 'vm'
           }
         }
       })
-      .state('app.note', {
-        url: '/notes/:noteId',
+      .state('app.notes', {
+        url: '/notes/:id',
         views: {
           'menuContent': {
-            templateUrl: 'templates/note.html',
-            controller: 'NoteController'
+            templateUrl: 'templates/edit.html',
+            controller: 'EditController',
+            controllerAs: 'vm'
           }
         }
       });
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/welcome');
+    $urlRouterProvider.otherwise('/app/create');
   });

@@ -1,0 +1,1 @@
+"c:\Program Files\Java\jdk1.8.0_45\bin\keytool" -genkey -v -keystore com.actualwave.ionicnotesapp.keystore -alias ionicnotesapp -keyalg RSA -keysize 2048 -validity 10000

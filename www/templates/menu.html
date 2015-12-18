@@ -18,22 +18,35 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
-          <strong>Create New</strong>
+        <ion-item menu-close data-ui-sref="app.create">
+          <strong><i class="icon ion-document"></i>&nbsp;Create New</strong>
         </ion-item>
-        <!--ion-item menu-close data-ng-repeat="item as item.title for item in vm.items">
-          Search
-        </ion-item>
-        <ion-item menu-close href="#/app/search">
-          Search
-        </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
-        </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
-        </ion-item-->
+        <div data-ng-switch="vm.list.length">
+          <div class="item item-divider">
+            Saved Notes:
+          </div>
+          <div data-ng-switch-default>
+            <ion-item menu-close data-ng-repeat="item in vm.list track by item.id" data-ui-sref="app.notes({id: {{item.id}} })">
+              {{ vm.getTitle(item) }}
+              <ion-option-button menu-close class="button-positive" data-ui-sref="app.notes({id: {{item.id}} })">
+                <i class="icon ion-edit"></i>&nbsp;Edit
+              </ion-option-button>
+              <ion-option-button class="button-assertive" data-ng-click="vm.remove(item)">
+                <i class="icon ion-close-round"></i>&nbsp;Delete
+              </ion-option-button>
+            </ion-item>
+          </div>
+          <div data-ng-switch-when="0" style="text-align: center;padding: 20px 0;">
+            You don't have any notes yet.
+          </div>
+        </div>
+        </button>
       </ion-list>
+      <div class="bar-balanced" data-ng-if="vm.list.length" style="margin-top: 40px;">
+        <button class="button button-assertive button-block" data-ng-click="vm.clear()">
+          <i class="icon ion-trash-a"></i>&nbsp;Clear All
+        </button>
+      </div>
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>

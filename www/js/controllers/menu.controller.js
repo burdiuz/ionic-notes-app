@@ -3,51 +3,40 @@
  */
 (function() {
   /**
-   *
-   * @param $scope
-   * @param $ionicModal
-   * @param $timeout
-   * @param dataService DataService
+   * @param noteService {NoteService}
+   * @param dataService {DataService}
    * @constructor
    */
-  function MenuController($scope, $ionicModal, dataService) {
-    var _modal;
+  function MenuController(noteService, dataService) {
     var _this = this;
-    var _items = dataService.getList();
+    var _list = dataService.getList();
 
-    _this.openCreateModal = function() {
-      $scope.item = dataService.createItem();
-      _modal.show();
+    _this.getTitle = noteService.getTitle;
+
+    _this.clear = function() {
+      dataService.clear();
     };
 
-    _this.confirmCreateNote = function(item) {
-      _this.closeCreateModal();
-    }
-
-    _this.closeCreateModal = function() {
-      _modal.hide();
-      _modal = null;
+    _this.remove = function(item) {
+      dataService.removeItem(item);
     };
 
     Object.defineProperties(this, {
-      items: {
+      list: {
         get: function() {
-          return _items;
+          return _list;
         }
       }
     });
 
-    $ionicModal.fromTemplateUrl('templates/create.html', {
-      scope: $scope
-    }).then(function(modal) {
-      _modal = modal;
-    });
+    function reload() {
+      _list = dataService.getList();
+    }
 
-    $scope.save = _this.confirmCreateNote;
-    $scope.close = _this.closeCreateModal;
+    dataService.onChange(reload);
   }
 
-  MenuController.$inject = ['$scope', '$ionicModal', 'dataService'];
+  MenuController.$inject = ['noteService', 'dataService'];
 
   angular.module('starter.controllers').controller('MenuController', MenuController);
 })();

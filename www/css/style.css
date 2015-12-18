@@ -1,1 +1,7 @@
 /* Empty. Add your own CSS if you like */
+.scroll-content > .scroll {
+    height: 100%;
+}
+.scroll-content > .scroll > .fillarea {
+    min-height: 100%;
+}
