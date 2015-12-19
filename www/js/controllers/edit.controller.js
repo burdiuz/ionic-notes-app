@@ -73,7 +73,6 @@
     });
 
     $scope.$on('$destroy', function() {
-      console.log('destroy!');
       _changeRemoveListener();
     });
 
