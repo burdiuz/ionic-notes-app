@@ -3,11 +3,12 @@
  */
 (function() {
   /**
+   * @param $stateParams
    * @param noteService {NoteService}
    * @param dataService {DataService}
    * @constructor
    */
-  function MenuController(noteService, dataService) {
+  function MenuController($stateParams, noteService, dataService) {
     var _this = this;
     var _list = dataService.getList();
 
@@ -15,6 +16,10 @@
 
     _this.clear = function() {
       dataService.clear();
+    };
+
+    _this.showCreate = function() {
+      noteService.goToCreate();
     };
 
     _this.remove = function(item) {
@@ -29,14 +34,14 @@
       }
     });
 
-    function reload() {
-      _list = dataService.getList();
+    function reload(event, list) {
+      _list = list;
     }
 
     dataService.onChange(reload);
   }
 
-  MenuController.$inject = ['noteService', 'dataService'];
+  MenuController.$inject = ['$stateParams', 'noteService', 'dataService'];
 
   angular.module('starter.controllers').controller('MenuController', MenuController);
 })();

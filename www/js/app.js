@@ -33,7 +33,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.core'])
         controllerAs: 'vm'
       })
       .state('app.create', {
-        url: '/create',
+        url: '/create/:id',
         views: {
           'menuContent': {
             templateUrl: 'templates/create.html',
@@ -53,5 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.core'])
         }
       });
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/create');
+    $urlRouterProvider.otherwise(function() {
+      return '/app/create/' + String(Date.now());
+    });
   });

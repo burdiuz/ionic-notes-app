@@ -10,8 +10,27 @@
    * @param dataService {DataService}
    * @constructor
    */
-  function EditController($state, $stateParams, noteService, dataService) {
+  function EditController($state, $stateParams, $scope, noteService, dataService) {
+    /**
+     * @type Note
+     */
     var _item;
+    /**
+     * @type NgModelController
+     */
+    var _textModel;
+    /**
+     * @type Function
+     */
+    var _changeRemoveListener;
+
+    this.save = function() {
+      dataService.saveItem(_item);
+      if (_textModel) {
+        _textModel.$setPristine();
+        _textModel.$setUntouched();
+      }
+    };
 
     function checkAvailability() {
       var result = true;
@@ -32,19 +51,35 @@
         get: function() {
           return _item ? noteService.getTitle(_item) : '';
         }
+      },
+      textModel: {
+        get: function() {
+          return _textModel;
+        },
+        set: function(value) {
+          _textModel = value;
+        }
       }
     });
-
-    this.save = function() {
-      dataService.saveItem(_item);
-    }
 
     if (checkAvailability()) {
       _item = dataService.getItem($stateParams.id);
     }
+
+    _changeRemoveListener = dataService.onChange(function() {
+      if (!dataService.hasItem(_item.id)) {
+        $state.go('app.create');
+      }
+    });
+
+    $scope.$on('$destroy', function() {
+      console.log('destroy!');
+      _changeRemoveListener();
+    });
+
   }
 
-  EditController.$inject = ['$state', '$stateParams', 'noteService', 'dataService'];
+  EditController.$inject = ['$state', '$stateParams', '$scope', 'noteService', 'dataService'];
 
   angular.module('starter.controllers').controller('EditController', EditController);
 })();

@@ -8,26 +8,25 @@
    * @constructor
    */
   function Note() {
-    this.id = getId();
+    this.id = '';
     this.title = '';
     this.text = '';
     this.createdDate = new Date();
     this.modifiedDate = new Date();
   }
 
-  function getId() {
-    return String(Date.now());
-  }
-
   /**
+   *
+   * @param $rootScope
    * @param $window
+   * @param noteService {NoteService}
    * @constructor
    */
-  function DataService($q, $window) {
+  function DataService($rootScope, $window, noteService) {
     /**
-     * @type Deferred
+     * @type DataService
      */
-    var _change = $q.defer();
+    var _this = this;
 
     /**
      * @type Object<string, Note>
@@ -38,30 +37,32 @@
      */
     var _list;
 
-    this.getList = function() {
+    _this.getList = function() {
       return _list.slice();
     };
 
-    this.getItem = function(id) {
+    _this.getItem = function(id) {
       return _ids[id];
     };
 
-    this.hasItem = function(id) {
+    _this.hasItem = function(id) {
       return _ids.hasOwnProperty(id);
     };
 
     /**
      * @returns Note
      */
-    this.createItem = function() {
-      return new Note();
+    _this.createItem = function() {
+      var item = new Note();
+      item.id = noteService.getId();
+      return item;
     };
 
     /**
      * @param item Note
      */
-    this.saveItem = function(item) {
-      if (this.hasItem(item.id)) {
+    _this.saveItem = function(item) {
+      if (_this.hasItem(item.id)) {
         var index = _list.indexOf(item);
         if (index >= 0) {
           item.modifiedDate = new Date();
@@ -77,7 +78,7 @@
     /**
      * @param item Note
      */
-    this.removeItem = function(item) {
+    _this.removeItem = function(item) {
       var index = _list.indexOf(item);
       if (index >= 0) {
         _list.splice(index, 1);
@@ -86,16 +87,18 @@
       }
     };
 
-    this.clear = function() {
+    _this.clear = function() {
       _ids = {};
       _list = [];
       write();
     };
 
-    this.onChange = function(handler) {
+    _this.onChange = function(handler) {
+      var remover = null;
       if (handler) {
-        _change.promise.then(null, null, handler);
+        remover = $rootScope.$on('data.change', handler);
       }
+      return remover;
     };
 
     function read() {
@@ -108,13 +111,13 @@
 
     function write() {
       $window.localStorage.setItem('notes', angular.toJson(_list));
-      _change.notify();
+      $rootScope.$emit('data.change', _this.getList());
     }
 
     read();
   }
 
-  DataService.$inject = ['$q', '$window'];
+  DataService.$inject = ['$rootScope', '$window', 'noteService'];
 
   angular.module('app.core').service('dataService', DataService);
 })();

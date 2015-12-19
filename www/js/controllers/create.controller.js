@@ -7,18 +7,22 @@
    * @param dataService {DataService}
    * @constructor
    */
-  function CreateController($state, dataService) {
+  function CreateController($state, $stateParams, dataService) {
     /**
      * @type {Note}
      * @private
      */
     var _item = dataService.createItem();
 
+    if ($stateParams.id) {
+      _item.id = $stateParams.id;
+    }
+
     /**
      * @returns {boolean}
      */
     this.invalid = function() {
-      return !_item.text;
+      return !_item.text && !_item.title;
     };
 
     this.save = function() {
@@ -42,7 +46,7 @@
     });
   }
 
-  CreateController.$inject = ['$state', 'dataService'];
+  CreateController.$inject = ['$state', '$stateParams', 'dataService'];
 
   angular.module('starter.controllers').controller('CreateController', CreateController);
 })();

@@ -6,7 +6,7 @@
   /**
    * @constructor
    */
-  function NoteService() {
+  function NoteService($state) {
 
     this.getTitle = function(item) {
       var title = item.title;
@@ -24,7 +24,19 @@
       }
       return title;
     };
+
+    this.getId = function () {
+      return String(Date.now());
+    };
+
+    this.goToCreate = function(){
+      $state.go('app.create', {
+        id: this.getId()
+      });
+    };
   }
+
+  NoteService.$inject = ['$state'];
 
   angular.module('app.core').service('noteService', NoteService);
 })();
