@@ -21,7 +21,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.core'])
       }
     });
   })
+  .config(function($provide) {
+    $provide.decorator('ionItemDirective', function($delegate) {
+      var _compile = $delegate.compile;
+      var _link;
+        function compile($element, $attrs){
+          console.log('ole');
+          _link = _compile.apply(this, arguments);
+          /*var _post = link.post;
+          link.post = function(){
+            _post.apply();
+          };
+          */
+          console.log(link);
+          return {
+            post: link
+          };
+        }
 
+      function link($scope, $element, attrs) {
+        console.log(arguments);
+        _link.apply(this, arguments);
+      }
+      $delegate.compile = compile;
+      return $delegate;
+    });
+  })
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
 
