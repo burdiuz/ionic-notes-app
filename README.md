@@ -3,7 +3,7 @@ Demo application built with [Ionic framework](http://ionicframework.com) on [Apa
   
 ![Screenshot #1](https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/03.png)  
 [Screenshot #2](https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/04.png)
-[Screenshot #2](https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/05.png)
+[Screenshot #3](https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/05.png)
 
 ### Installation
 ```batch
