@@ -24,6 +24,13 @@
      */
     var _changeRemoveListener;
 
+    /**
+     * @returns {boolean}
+     */
+    this.invalid = function() {
+      return !_item.text;
+    };
+
     this.save = function() {
       dataService.saveItem(_item);
       if (_textModel) {
