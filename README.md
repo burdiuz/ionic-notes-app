@@ -7,8 +7,8 @@ Demo application built with [Ionic framework](http://ionicframework.com) on [Apa
 
 ### Installation
 ```batch
+cordova install
 npm install
-bower install
 #ionic platform add android
 cordova platform add android@4.1.1
 ```

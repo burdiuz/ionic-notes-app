@@ -1,6 +1,6 @@
 {
   "name": "notes-app",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Notes App: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
