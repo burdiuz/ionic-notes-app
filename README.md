@@ -6,21 +6,34 @@ Demo application built with [Ionic framework](http://ionicframework.com) on [Apa
 [Screenshot #3](https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/05.png)
 
 ### Installation
+You can use install.bat on Windows or execute these commands on any platform.
 ```batch
-cordova install
+npm install cordova -g
+npm install ionic -g
 npm install
-#ionic platform add android
-cordova platform add android@4.1.1
+ionic state reset
+bower install
+ionic resources
 ```
-*Note: Android SDK version might be omitted.*
+*Note: Android SDK version is defined in package.json.*
 
 ### Build
-I've created batch files to simplify building application on Windows.
+Android application should be signed, so first you will need to create a certificate via `generate_key.bat` or using command
+```batch
+keytool -genkey -v -keystore com.actualwave.ionicnotesapp.keystore -alias ionicnotesapp -keyalg RSA -keysize 2048 -validity 10000
+```
+To build application on Windows you can use sequence of batch files
 ```batch
 build_android.bat
-generate_key.bat #run once to generate certificate
 sign_apk.bat
 ```
+Or these commands
+```batch
+cordova build --release android
+copy /Y platforms\android\build\outputs\apk\android-release-unsigned.apk ionicnotesapp-release.apk
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore com.actualwave.ionicnotesapp.keystore ionicnotesapp-release.apk ionicnotesapp
+```
+
 You can get more information about build process [here](http://ionicframework.com/docs/guide/publishing.html) and [here](https://cordova.apache.org/docs/en/4.0.0/guide/platforms/android/).
   
 [Cordova Docs: The config.xml File](https://cordova.apache.org/docs/en/4.0.0/config_ref/)

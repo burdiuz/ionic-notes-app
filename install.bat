@@ -1,6 +1,1 @@
-npm install cordova -g
-npm install ionic -g
-npm install
-cordova install
-bower install
-ionic resources
+npm install cordova -g & npm install ionic -g & npm install & ionic state reset & bower install & ionic resources
