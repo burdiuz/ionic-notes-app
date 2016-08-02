@@ -1,7 +1,35 @@
 /* Empty. Add your own CSS if you like */
+
+body {
+	font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
+	/* -webkit-font-smoothing: subpixel-antialiased; */
+}
+
 .scroll-content > .scroll {
     height: 100%;
 }
 .scroll-content > .scroll > .fillarea {
     min-height: 100%;
+}
+
+.main-text {
+  position:absolute;
+  top: 60px;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.row-save-buttons.row {
+  position: absolute;
+  padding: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.row-save-buttons .col {
+  padding: 0 5px;
 }

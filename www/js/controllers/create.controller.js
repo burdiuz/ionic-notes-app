@@ -2,6 +2,8 @@
  * Created by Oleg Galaburda on 17.12.15.
  */
 (function() {
+  'use strict';
+
   /**
    * @param $state
    * @param dataService {DataService}

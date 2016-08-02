@@ -2,6 +2,7 @@
  * Created by Oleg Galaburda on 17.12.15.
  */
 (function() {
+  'use strict';
 
   /**
    * @constructor

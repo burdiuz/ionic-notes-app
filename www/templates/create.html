@@ -1,25 +1,29 @@
-<ion-view cache-view="false" view-title="Create Note">
-  <form name="createForm" novalidate>
-    <ion-content scroll="false">
-      <div class="list">
-        <label class="item item-input">
-          <input name="title" type="text" placeholder="Title" data-ng-model="vm.item.title">
-        </label>
-      </div>
-    </ion-content>
-    <div class="row">
-    <textarea name="text" placeholder="Enter Note text here..." class="col col-100" data-ng-model="vm.item.text" focus
-              style="position:absolute; top: 100px; bottom: 80px; left: 0; right: 0; margin: auto;"></textarea>
-    </div>
-    <div class="row">
-      <button class="col col-50 button button-block button-positive" type="submit"
-              style="position: absolute; bottom: 0; right: 0;" ng-click="vm.saveAndNew()"
-              data-ng-disabled="(createForm.text.$pristine && createForm.title.$pristine) || vm.invalid()">Save and add New
-      </button>
-      <button class="col col-50 button button-block button-positive" type="submit"
-              style="position: absolute; bottom: 0; left: 0;" ng-click="vm.save()"
-              data-ng-disabled="(createForm.text.$pristine && createForm.title.$pristine) || vm.invalid()">Save
-      </button>
-    </div>
-  </form>
-</ion-view>
+<ion-view cache-view="false" view-title="Create Note" >
+  <form name="createForm" novalidate >
+    <ion-content scroll="false" >
+      <div class="list" >
+        <label class="item item-input" >
+          <input name="title" type="text" placeholder="Title" data-ng-model="vm.item.title" >
+        </label >
+      </div >
+      <div class="row" >
+      <textarea name="text" placeholder="Enter Note text here..." class="col col-100 main-text" data-ng-model="vm.item.text" focus></textarea >
+      </div >
+      <div class="row row-save-buttons" >
+        <div class="col col-50" >
+          <button class="button button-block button-positive" type="submit"
+                  ng-click="vm.saveAndNew()"
+                  data-ng-disabled="(createForm.text.$pristine && createForm.title.$pristine) || vm.invalid()" >Save and
+            add New
+          </button >
+        </div >
+        <div class="col col-50" >
+          <button class="button button-block button-positive" type="submit"
+                  ng-click="vm.save()"
+                  data-ng-disabled="(createForm.text.$pristine && createForm.title.$pristine) || vm.invalid()" >Save
+          </button >
+        </div >
+      </div >
+    </ion-content >
+  </form >
+</ion-view >
