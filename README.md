@@ -1,9 +1,10 @@
 ## Ionic Notes App
 Demo application built with [Ionic framework](http://ionicframework.com) on [Apache Cordova platform](https://cordova.apache.org). Its simple application where you can create and manage text notes. You can [download release version](https://github.com/burdiuz/ionic-notes-app/raw/master/ionicnotesapp-release.apk).  
   
-<img alt="Screenshot #1" src="https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/03.png" width="100">
-<img alt="Screenshot #2" src="https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/04.png" width="100">
-<img alt="Screenshot #3" src="https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/05.png" width="100">
+<img alt="Screenshot #1" src="https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/03.png" width="160">
+<img alt="Screenshot #2" src="https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/04.png" width="160">
+<img alt="Screenshot #3" src="https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/05.png" width="160">
+<img alt="Screenshot #4" src="https://github.com/burdiuz/ionic-notes-app/raw/master/screenshots/06.png" width="160">
 
 ### Installation
 You can use install.bat on Windows or execute these commands on any platform.
